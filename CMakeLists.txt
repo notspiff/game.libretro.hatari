@@ -1,10 +1,7 @@
+cmake_minimum_required(VERSION 3.1)
 project(game.libretro.hatari)
 
-cmake_minimum_required(VERSION 2.6)
-
 list(APPEND CMAKE_MODULE_PATH ${PROJECT_SOURCE_DIR})
-
-enable_language(CXX)
 
 find_package(Kodi REQUIRED)
 
@@ -40,9 +37,7 @@ externalproject_add(hatari
                     BUILD_IN_SOURCE 1)
 
 set(HATARI_CUSTOM_BINARY ${PROJECT_BINARY_DIR}/hatari/src/hatari/hatari_libretro${CMAKE_SHARED_LIBRARY_SUFFIX}
-                         game.libretro.hatari${CMAKE_SHARED_LIBRARY_SUFFIX} hatari)
+                         ${PROJECT_NAME}${CMAKE_SHARED_LIBRARY_SUFFIX})
 
-build_addon(game.libretro.hatari HATARI DEPLIBS)
-add_dependencies(game.libretro.hatari hatari)
-
-include(CPack)
+build_addon(${PROJECT_NAME} HATARI DEPLIBS)
+add_dependencies(${PROJECT_NAME} hatari)
