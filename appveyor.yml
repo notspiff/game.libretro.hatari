@@ -18,6 +18,9 @@ environment:
 build_script:
   - cd ..
   - git clone --depth=1 https://github.com/xbmc/xbmc.git
+  - IF "%GENERATOR%" == "Visual Studio 14" (cd xbmc\tools\buildsteps\windows\win32) ELSE (cd xbmc\tools\buildsteps\windows\x64)
+  - download-msys2.bat sh
+  - cd ..\..\..\..\..
   - cd %app_id%
   - mkdir build
   - cd build
